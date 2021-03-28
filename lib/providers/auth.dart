@@ -121,7 +121,7 @@ class AuthProvider with ChangeNotifier {
     final pref = await SharedPreferences.getInstance();
     pref.clear();
     notifyListeners();
-    // ParseUser currentUser = await ParseUser.currentUser() as ParseUser;
-    // await currentUser.logout();
+    ParseUser currentUser = await ParseUser.currentUser() as ParseUser;
+    await currentUser.logout();
   }
 }

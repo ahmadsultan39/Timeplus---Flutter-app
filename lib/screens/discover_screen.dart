@@ -19,18 +19,17 @@ class DiscoverScreen extends StatelessWidget {
       appBar: AppBar(
           title: Row(
         children: [
-          Text(
+          const Text(
             'Time',
           ),
-          Padding(
+          const Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
-            child: Text(
+            child: const Text(
               '+',
             ),
           )
         ],
-      ) //Text('Timeplus'),
-          ),
+      )),
       drawer: DrawerScreen(),
       body: RefreshIndicator(
         color: Theme.of(context).primaryColor,

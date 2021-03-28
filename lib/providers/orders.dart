@@ -22,16 +22,7 @@ class Order {
 }
 
 class OrdersProvider with ChangeNotifier {
-  List<Order> _orders = [
-    // Order(
-    //   id: DateTime.now().toString(),
-    //   userId: 'RkIMtqPKkz',
-    //   watchId: 'tFB0e5RVbh',
-    //   amount: 2,
-    //   location: 'mazzeh',
-    //   orderDate: DateTime.now(),
-    // )
-  ];
+  List<Order> _orders = [];
 
   List<Order> get orders {
     return [..._orders];

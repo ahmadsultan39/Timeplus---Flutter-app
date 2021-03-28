@@ -41,17 +41,17 @@ class AuthScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'Time',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 50,
                             ),
                           ),
-                          Padding(
+                          const Padding(
                             padding: const EdgeInsets.only(bottom: 22),
-                            child: Text(
+                            child: const Text(
                               '+',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 50,
                               ),
                             ),
@@ -104,7 +104,7 @@ class _AuthCardState extends State<AuthCard>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
     );
     _slideAnimation =
         Tween<Offset>(begin: const Offset(0, -2), end: const Offset(0, 0))
@@ -232,7 +232,7 @@ class _AuthCardState extends State<AuthCard>
       ),
       elevation: 8.0,
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.easeIn,
         height: _authMode == AuthMode.Signup ? 448 : 268,
         constraints:
@@ -268,7 +268,7 @@ class _AuthCardState extends State<AuthCard>
                   },
                 ),
                 AnimatedContainer(
-                  duration: Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 300),
                   constraints: BoxConstraints(
                       maxHeight: _authMode == AuthMode.Signup ? 360 : 0,
                       minHeight: _authMode == AuthMode.Signup ? 180 : 0),
@@ -361,7 +361,7 @@ class _AuthCardState extends State<AuthCard>
                     ),
                     onPressed: _submit,
                   ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 OutlinedButton(

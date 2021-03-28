@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/watches.dart';
-
 import '../widgets/image_input.dart';
 
 class AddWatchScreen extends StatefulWidget {
@@ -14,8 +13,6 @@ class AddWatchScreen extends StatefulWidget {
 }
 
 class _AddWatchScreenState extends State<AddWatchScreen> {
-  // final _imageUrlController = TextEditingController();
-  // final _imageUrlFocusNode = FocusNode();
   final _form = GlobalKey<FormState>();
   var watch = Watch(
     id: null,
@@ -52,18 +49,11 @@ class _AddWatchScreenState extends State<AddWatchScreen> {
           'description': watch.description,
           'imageUrl': watch.imageUrl,
         };
-        // _image = File.fromUri(Uri())
-        // _imageUrlController.text = watch.imageUrl;
       }
       _init = false;
     }
     super.didChangeDependencies();
   }
-
-  // void _loadImage() {
-  //   if (Uri.tryParse(watch.imageUrl) == null) return;
-  //   if (!_imageUrlFocusNode.hasFocus) setState(() {});
-  // }
 
   void _saveForm() async {
     if (!_form.currentState.validate()) return;
@@ -72,20 +62,21 @@ class _AddWatchScreenState extends State<AddWatchScreen> {
       _isLoading = true;
     });
     try {
-      await Provider.of<WatchesProvider>(context, listen: false).addProduct(watch,_image);
+      await Provider.of<WatchesProvider>(context, listen: false)
+          .addProduct(watch, _image);
     } catch (error) {
       print(error.toString());
       await showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: Text('An Error has occured!'),
-          content: Text('Something went wrong please try again later'),
+          title: const Text('An Error has occured!'),
+          content: const Text('Something went wrong please try again later'),
           actions: [
             TextButton(
                 onPressed: () {
                   Navigator.of(ctx).pop();
                 },
-                child: Text('Ok'))
+                child: const Text('Ok'))
           ],
         ),
       );
@@ -96,39 +87,38 @@ class _AddWatchScreenState extends State<AddWatchScreen> {
     Navigator.of(context).pop();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Watch Data'),
+        title: const Text('Watch Data'),
         actions: [
           IconButton(
-            icon: Icon(Icons.save),
+            icon: const Icon(Icons.save),
             onPressed: _saveForm,
           ),
         ],
       ),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator( valueColor: AlwaysStoppedAnimation<Color>(
-                            Theme.of(context).primaryColor),))
+          ? Center(
+              child: CircularProgressIndicator(
+              valueColor:
+                  AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
+            ))
           : Form(
               key: _form,
               child: ListView(
-                //**use singleChildSV and column for long forms**
                 padding: const EdgeInsets.all(15),
                 children: [
                   TextFormField(
                     initialValue: _initValues['title'],
-                    decoration: InputDecoration(labelText: 'Title'),
+                    decoration: const InputDecoration(labelText: 'Title'),
                     textInputAction: TextInputAction.next,
                     validator: (value) {
                       if (value.isEmpty) return "This can't be empty";
                       return null;
                     },
                     onSaved: (value) {
-                      // FocusScope.of(context).requestFocus(_priceFocusNode);
                       watch = Watch(
                         id: watch.id,
                         title: value,
@@ -140,7 +130,7 @@ class _AddWatchScreenState extends State<AddWatchScreen> {
                   ),
                   TextFormField(
                     initialValue: _initValues['price'],
-                    decoration: InputDecoration(labelText: 'Price'),
+                    decoration: const InputDecoration(labelText: 'Price'),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
                     validator: (value) {
@@ -157,16 +147,14 @@ class _AddWatchScreenState extends State<AddWatchScreen> {
                         imageUrl: watch.imageUrl,
                       );
                     },
-                    //   focusNode: _priceFocusNode,
                   ),
                   TextFormField(
                     initialValue: _initValues['description'],
-                    decoration: InputDecoration(labelText: 'Description'),
+                    decoration: const InputDecoration(labelText: 'Description'),
                     maxLines: 3,
                     keyboardType: TextInputType.multiline,
                     validator: (value) {
                       if (value.isEmpty) return "This cat't be empty";
-                      // if (value.length < 7) return "too short description";
                       return null;
                     },
                     onSaved: (value) {
@@ -179,7 +167,7 @@ class _AddWatchScreenState extends State<AddWatchScreen> {
                       );
                     },
                   ),
-                  ImageInput(setImage,watch.imageUrl),
+                  ImageInput(setImage, watch.imageUrl),
                 ],
               ),
             ),

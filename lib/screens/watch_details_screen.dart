@@ -21,24 +21,24 @@ class WatchDetailsScreen extends StatelessWidget {
               slivers: [
                 SliverAppBar(
                   expandedHeight: mediaquery.size.width,
-                  //(mediaquery.size.height - mediaquery.padding.top) * 0.60,
                   pinned: true,
                   flexibleSpace: FlexibleSpaceBar(
                       background: Container(
                         height: mediaquery.size.width,
-                        //  (mediaquery.size.height - mediaquery.padding.top) *   0.60,
                         width: double.infinity,
                         child: Hero(
                           tag: watch.id,
                           child: FadeInImage(
-                            placeholder: AssetImage('assets/images/watch.png'),
+                            placeholder:
+                                const AssetImage('assets/images/watch.png'),
                             image: NetworkImage(
                               watch.imageUrl,
                             ),
                             fit: BoxFit.cover,
                             imageErrorBuilder: (BuildContext context,
                                 Object exception, StackTrace stackTrace) {
-                              return Center(child: Text('Can\'t load image'));
+                              return const Center(
+                                  child: const Text('Can\'t load image'));
                             },
                           ),
                         ),
@@ -51,17 +51,17 @@ class WatchDetailsScreen extends StatelessWidget {
                 ),
                 SliverList(
                     delegate: SliverChildListDelegate([
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Container(
                     alignment: Alignment.centerRight,
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
                       'السعر : ${watch.price.toStringAsFixed(0)}',
                       textAlign: TextAlign.right,
-                      style: TextStyle(fontSize: 20, color: Colors.grey),
+                      style: const TextStyle(fontSize: 20, color: Colors.grey),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Container(
                     alignment: Alignment.centerRight,
                     padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -69,7 +69,7 @@ class WatchDetailsScreen extends StatelessWidget {
                       'المواصفات : ${watch.description}',
                       textAlign: TextAlign.right,
                       softWrap: true,
-                      style: TextStyle(fontSize: 20),
+                      style: const TextStyle(fontSize: 20),
                     ),
                   ),
                 ]))
@@ -81,13 +81,13 @@ class WatchDetailsScreen extends StatelessWidget {
               showMaterialModalBottomSheet(
                   context: context, builder: (ctx) => PlaceOrder(watch.id));
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.add_shopping_cart_sharp,
               color: Colors.black,
             ),
-            label: Padding(
+            label: const Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Text(
+              child: const Text(
                 'Order Now',
                 style: TextStyle(color: Colors.black),
               ),

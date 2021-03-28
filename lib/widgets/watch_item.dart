@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -44,7 +43,7 @@ class WatchItem extends StatelessWidget {
               } catch (error) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text(
+                    content: const Text(
                       'Deleting failed!',
                       textAlign: TextAlign.center,
                     ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
+
 import '../providers/orders.dart';
 import '../providers/auth.dart';
 
@@ -99,8 +100,6 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         location = value;
                       },
                     ),
-                    // inc and dec
-                    // Divider(),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -108,7 +107,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: IconButton(
-                            icon: Icon(Icons.remove),
+                            icon: const Icon(Icons.remove),
                             onPressed: () {
                               if (amount > 1) {
                                 setState(() {
@@ -120,12 +119,12 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         ),
                         Text(
                           amount.toString(),
-                          style: TextStyle(fontSize: 18),
+                          style: const TextStyle(fontSize: 18),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: IconButton(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.add,
                             ),
                             onPressed: () {
@@ -137,7 +136,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: Colors.black,
                     ),
                     // placeOrderButton
@@ -152,17 +151,18 @@ class _PlaceOrderState extends State<PlaceOrder> {
                               SnackBar(
                                   content: Container(
                                 margin: const EdgeInsets.all(8),
-                                child: Text(
+                                child: const Text(
                                     'We will contact you as soon as possible to confrim your order'),
                               )),
                             );
                           }
                         },
-                        child: Padding(
+                        child: const Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(
+                          child: const Text(
                             'Place Order',
-                            style: TextStyle(color: Colors.black, fontSize: 18),
+                            style: const TextStyle(
+                                color: Colors.black, fontSize: 18),
                           ),
                         ),
                         style: ButtonStyle(

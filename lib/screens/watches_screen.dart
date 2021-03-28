@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:timeplus/providers/watches.dart';
 
-// import '../providers/watches.dart';
-
 import './drawer_screen.dart';
 import './add_watch_screen.dart';
 
@@ -13,18 +11,17 @@ class WatchesScreen extends StatelessWidget {
   static const routeName = '/watches';
 
   Future<void> _refresh(BuildContext context) async {
-    await Provider.of<WatchesProvider>(context,listen: false).fetchProducts();
+    await Provider.of<WatchesProvider>(context, listen: false).fetchProducts();
   }
 
   @override
   Widget build(BuildContext context) {
-    // final products = Provider.of<Products>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Products'),
+        title: const Text('Your Products'),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.add_circle_rounded,
               size: 25,
             ),
@@ -35,14 +32,18 @@ class WatchesScreen extends StatelessWidget {
         ],
       ),
       drawer: DrawerScreen(),
-      body: RefreshIndicator(color: Theme.of(context).primaryColor,
+      body: RefreshIndicator(
+        color: Theme.of(context).primaryColor,
         onRefresh: () => _refresh(context),
         child: FutureBuilder(
           future: _refresh(context),
           builder: (ctx, snapshot) =>
               snapshot.connectionState == ConnectionState.waiting
-                  ? Center(child: CircularProgressIndicator( valueColor: AlwaysStoppedAnimation<Color>(
-                            Theme.of(context).primaryColor),))
+                  ? Center(
+                      child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                          Theme.of(context).primaryColor),
+                    ))
                   : Consumer<WatchesProvider>(
                       builder: (ctx, watches, _) => Container(
                         margin: const EdgeInsets.all(5),
@@ -56,7 +57,7 @@ class WatchesScreen extends StatelessWidget {
                                 watches.items[i].title,
                                 watches.items[i].imageUrl,
                               ),
-                              Divider(),
+                              const Divider(),
                             ],
                           ),
                         ),

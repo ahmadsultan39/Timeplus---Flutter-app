@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import '../providers/watches.dart';
 
 import '../screens/watch_details_screen.dart';
-
-import 'package:cached_network_image/cached_network_image.dart';
 
 class DiscoverListItem extends StatefulWidget {
   final String id;
@@ -29,12 +28,11 @@ class _DiscoverListItemState extends State<DiscoverListItem> {
       child: Hero(
         tag: watch.id,
         child: Card(
-          // margin: const EdgeInsets.symmetric(vertical: 6),
           clipBehavior: Clip.antiAlias,
           child: Container(
             padding: const EdgeInsets.all(5),
             height: mediaQuery.size.width * 0.30 + 8,
-            width:double.infinity,
+            width: double.infinity,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -42,22 +40,17 @@ class _DiscoverListItemState extends State<DiscoverListItem> {
                   width: mediaQuery.size.width * 0.30,
                   height: mediaQuery.size.width * 0.30,
                   margin: const EdgeInsets.only(right: 8),
-                  child:
-                   FadeInImage(
-                    placeholder: AssetImage('assets/images/watch.png'),
-                    image: NetworkImage(
-                      watch.imageUrl,
-                    ),
+                  child: CachedNetworkImage(
+                    imageUrl: watch.imageUrl,
+                    placeholder: (context, url) =>
+                        Image.asset('assets/images/watch.png'),
+                    errorWidget: (context, url, error) =>
+                        const Center(child: const Icon(Icons.error)),
                     fit: BoxFit.cover,
-                    imageErrorBuilder: (BuildContext context, Object exception,
-                        StackTrace stackTrace) {
-                      return Center(child: Text('Can\'t load image'));
-                    },
                   ),
                 ),
                 Container(
-                  // margin:  const EdgeInsets.only(top: 8),
-                 width: mediaQuery.size.width *0.60 ,
+                  width: mediaQuery.size.width * 0.60,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +61,7 @@ class _DiscoverListItemState extends State<DiscoverListItem> {
                             fontWeight: FontWeight.bold, fontSize: 20),
                         overflow: TextOverflow.fade,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                       Text(watch.price.toStringAsFixed(0) + ' SYP'),

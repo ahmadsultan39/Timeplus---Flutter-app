@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../providers/auth.dart';
 
 import './watches_screen.dart';
@@ -17,46 +18,46 @@ class DrawerScreen extends StatelessWidget {
         AppBar(
           title: Row(
             children: [
-              Text('Time'),
-              Padding(
+              const Text('Time'),
+              const Padding(
                 padding: const EdgeInsets.only(bottom: 5),
-                child: Text('+'),
+                child: const Text('+'),
               )
             ],
           ),
           automaticallyImplyLeading: false,
         ),
         ListTile(
-          leading: Icon(Icons.shopping_bag_rounded),
-          title: Text('Shop'),
+          leading: const Icon(Icons.shopping_bag_rounded),
+          title: const Text('Shop'),
           onTap: () {
             Navigator.of(context)
                 .pushReplacementNamed(DiscoverScreen.routeName);
           },
         ),
-        Divider(),
+        const Divider(),
         ListTile(
-          leading: Icon(Icons.receipt_long_rounded),
-          title: Text('Orders'),
+          leading: const Icon(Icons.receipt_long_rounded),
+          title: const Text('Orders'),
           onTap: () {
             Navigator.of(context).pushReplacementNamed(OrdersScreen.routeName);
           },
         ),
-        Divider(),
+        const Divider(),
         if (admin)
           ListTile(
-            leading: Icon(Icons.edit),
-            title: Text('Watches'),
+            leading: const Icon(Icons.edit),
+            title: const Text('Watches'),
             onTap: () {
               Navigator.of(context)
                   .pushReplacementNamed(WatchesScreen.routeName);
             },
           ),
-        Spacer(),
-        Divider(),
+        const Spacer(),
+        const Divider(),
         ListTile(
-          leading: Icon(Icons.exit_to_app_rounded),
-          title: Text('Logout'),
+          leading: const Icon(Icons.exit_to_app_rounded),
+          title: const Text('Logout'),
           onTap: () {
             // Navigator.of(context).pop();
             Navigator.of(context).pushReplacementNamed('/');

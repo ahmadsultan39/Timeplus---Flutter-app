@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../providers/orders.dart' show OrdersProvider;
+import '../providers/auth.dart';
 import '../widgets/order_item.dart';
 import '../screens/drawer_screen.dart';
-import '../providers/auth.dart';
 
 class OrdersScreen extends StatelessWidget {
   static const routeName = '/orders';
@@ -13,7 +14,7 @@ class OrdersScreen extends StatelessWidget {
     final auth = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Orders'),
+        title: const Text('Orders'),
       ),
       drawer: DrawerScreen(),
       body: FutureBuilder(
@@ -23,13 +24,11 @@ class OrdersScreen extends StatelessWidget {
                 .fetchOrdersByUserId(auth.userId),
         builder: (ctx, dataSnapshot) {
           if (dataSnapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else {
             if (dataSnapshot.error != null) {
-              // ...
-              // Do error handling stuff
-              return Center(
-                child: Text('An error occurred!'),
+              return const Center(
+                child: const Text('An error occurred!'),
               );
             } else {
               return Consumer<OrdersProvider>(

@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-// import 'package:path/path.dart' as path;
-// import 'package:path_provider/path_provider.dart' as syspath;
 
 class ImageInput extends StatefulWidget {
   final Function setImage;
@@ -26,9 +24,6 @@ class _ImageInputState extends State<ImageInput> {
     setState(() {
       _storedImage = File(image.path);
     });
-    // final appDir = await syspath.getApplicationDocumentsDirectory();
-    // final fileName = path.basename(image.path);
-    // final savedImage = await _storedImage.copy('${appDir.path}/$fileName');
     widget.setImage(File(image.path));
   }
 
@@ -42,7 +37,7 @@ class _ImageInputState extends State<ImageInput> {
     } else if (widget.imageUrl.isNotEmpty) {
       return Image.network(widget.imageUrl);
     } else {
-      return Text(
+      return const Text(
         'No Image',
         textAlign: TextAlign.center,
       );
@@ -64,7 +59,7 @@ class _ImageInputState extends State<ImageInput> {
           child: _loadImage(),
           alignment: Alignment.center,
         ),
-        SizedBox(
+        const SizedBox(
           width: 10,
         ),
         Expanded(
@@ -73,16 +68,14 @@ class _ImageInputState extends State<ImageInput> {
               Icons.image,
               color: Theme.of(context).primaryColor,
             ),
-            label: Padding(
-              padding: const EdgeInsets.only(
- top: 18.0, bottom: 18.0, left: 8),
-              child: Text(
+            label: const Padding(
+              padding: const EdgeInsets.only(top: 18.0, bottom: 18.0, left: 8),
+              child: const Text(
                 'Upload Image',
                 style:
                     TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),
             ),
-            //    textColor: Theme.of(context).primaryColor,
             onPressed: _pickImage,
           ),
         ),

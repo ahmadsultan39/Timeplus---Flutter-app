@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 import '../providers/orders.dart' show Order;
 import '../providers/watches.dart';
-import 'package:intl/intl.dart';
 import '../providers/auth.dart';
 
 class OrderItem extends StatelessWidget {
@@ -28,24 +30,18 @@ class OrderItem extends StatelessWidget {
                 width: mediaQuery.size.width * 0.40,
                 height: mediaQuery.size.width * 0.40,
                 margin: const EdgeInsets.only(right: 8),
-                child: FadeInImage(
-                  placeholder: AssetImage('assets/images/watch.png'),
-                  image: NetworkImage(
-                    watch.imageUrl,
-                  ),
+                child: CachedNetworkImage(
+                  imageUrl: watch.imageUrl,
+                  placeholder: (context, url) =>
+                      Image.asset('assets/images/watch.png'),
+                  errorWidget: (context, url, error) =>
+                      const Center(child: const Icon(Icons.error)),
                   fit: BoxFit.cover,
-                  imageErrorBuilder: (BuildContext context, Object exception,
-                      StackTrace stackTrace) {
-                    return Center(child: Text('Can\'t load image'));
-                  },
                 ),
               ),
               Container(
                 width: mediaQuery.size.width * 0.50,
                 child: ListView(
-                  // Column(
-                  //   mainAxisAlignment: MainAxisAlignment.start,
-                  //   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       watch.title,
@@ -54,31 +50,31 @@ class OrderItem extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       softWrap: false,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Text('amount : ${order.amount}'),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Text(
                         'total : ${(order.amount * watch.price).toStringAsFixed(0)} SYP'),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Text('number : ${order.userNumber}'),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Text('location : ${order.location}'),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Container(
                       margin: const EdgeInsets.only(bottom: 5),
                       child: Text(
                         DateFormat('dd/MM/yyyy hh:mm').format(order.orderDate),
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.grey,
                         ),
                       ),
@@ -97,7 +93,7 @@ class OrderItem extends StatelessWidget {
             color: Theme.of(context).errorColor,
             margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             padding: const EdgeInsets.all(15),
-            child: Icon(
+            child: const Icon(
               Icons.delete_rounded,
               color: Colors.white,
               size: 35,

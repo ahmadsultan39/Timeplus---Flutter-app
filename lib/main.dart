@@ -9,7 +9,7 @@ import './Helpers/DBHelper.dart';
 
 import './screens/discover_screen.dart';
 import './screens/watch_details_screen.dart';
-import 'screens/add_watch_screen.dart';
+import './screens/add_watch_screen.dart';
 import './screens/watches_screen.dart';
 import './screens/auth_screen.dart';
 import './screens/orders_screen.dart';
@@ -65,7 +65,6 @@ class MyApp extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
                                 ))),
-                        //   primarySwatch:Color.fromRGBO(255, 255, 101, 1.0),
                       ),
                       home: Consumer<AuthProvider>(
                           builder: (ctx, auth, _) => FutureBuilder(
